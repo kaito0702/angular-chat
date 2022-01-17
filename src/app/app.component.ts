@@ -4,14 +4,14 @@ import { Component } from '@angular/core';
 import { Comment } from './class/comment';
 import { User } from './class/user';
 
-const CURRENT_USER: User = new User(1, '比企谷八幡')
-const ANOTHER_USER: User = new User(2, '雪ノ下雪乃')
+const CURRENT_USER: User = new User(1, '田中太郎')
+const ANOTHER_USER: User = new User(2, '佐藤太郎')
 
 const COMMENTS: Comment[] = [
-  new Comment(ANOTHER_USER, 'お疲れ様です'),
-  new Comment(ANOTHER_USER, 'この前の件いかがですか？'),
-  new Comment(CURRENT_USER, 'お疲れ様です'),
-  new Comment(CURRENT_USER, 'クライアントからOKが出ました')
+  new Comment(ANOTHER_USER, 'お久しぶりです'),
+  new Comment(ANOTHER_USER, 'お元気ですか？'),
+  new Comment(CURRENT_USER, 'お久しぶりです！'),
+  new Comment(CURRENT_USER, '元気です！！')
 ];
 
 @Component({
