@@ -40,7 +40,12 @@
                 ></textarea>
               </div>
               <div class="edit-buttons">
-                <button class="edit-btn btn btn-success btn-sm">更新</button>
+                <button
+                  class="edit-btn btn btn-success btn-sm"
+                  (click)="editComment(comment)"
+                >
+                  更新
+                </button>
                 <button class="edit-btn btn btn-warning btn-sm">
                   キャンセル
                 </button>

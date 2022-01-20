@@ -1,6 +1,7 @@
 import { CommentEndToken } from '@angular/compiler/src/ml_parser/tokens';
 import { Component, OnInit } from '@angular/core';
 import { user } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   Firestore,
   collection,
@@ -32,7 +33,10 @@ export class AppComponent {
   comment = '';
   comments$: Observable<CommentWithUser[]>;
 
-  constructor(private firestore: Firestore) {
+  constructor(
+    private firestore: Firestore,
+    private angularFiresotore: AngularFirestore
+  ) {
     const comments = query(
       collection(firestore, 'comments'),
       orderBy('date', 'asc')
@@ -70,6 +74,15 @@ export class AppComponent {
       });
 
       console.log('Document written with ID: ', docRef.id);
+    }
+  }
+
+  editComment(comment: CommentWithUser) {
+    if (comment) {
+      const commentDoc = this.angularFiresotore.doc<Comment>(
+        'user/' + comment.user.id
+      );
+      commentDoc.valueChanges({ message: comment.message });
     }
   }
 }
