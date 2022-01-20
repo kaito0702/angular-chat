@@ -13,6 +13,7 @@ import {
   addDoc,
   orderBy,
   updateDoc,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
@@ -81,6 +82,12 @@ export class AppComponent {
       return await updateDoc(doc(this.firestore, `comments/${comment.id}`), {
         message: this.changed_comment,
       });
+    }
+  }
+
+  deleteComment(comment: CommentWithUser) {
+    if (comment) {
+      deleteDoc(doc(this.firestore, `comments/${comment.id}`));
     }
   }
 }

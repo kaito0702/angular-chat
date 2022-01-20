@@ -20,7 +20,11 @@
                       title="編集"
                       (click)="comment.isEdit = !comment.isEdit"
                     ></i>
-                    <i class="fa fa-trash ml-2" title="削除"></i>
+                    <i
+                      class="fa fa-trash ml-2"
+                      title="削除"
+                      (click)="deleteComment(comment)"
+                    ></i>
                   </div>
                 </ng-container>
               </h4>
@@ -34,7 +38,7 @@
             <ng-container *ngIf="comment.isEdit">
               <div class="input-group">
                 <textarea
-                  [(ngModel)]="comment.message"
+                  [(ngModel)]="changed_comment"
                   name="edit-comment"
                   class="edit-form form-cotrol"
                 ></textarea>
