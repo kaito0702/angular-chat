@@ -10,12 +10,14 @@ export class Comment {
   date: Date;
   message: string;
   user_id: string;
+  isEdit: boolean;
 
   constructor(id: string, date: Date, message: string, user_id: string) {
     this.id = id;
     this.date = date;
     this.message = message;
     this.user_id = user_id;
+    this.isEdit = false;
   }
 }
 

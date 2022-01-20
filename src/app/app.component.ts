@@ -12,6 +12,7 @@ import {
   setDoc,
   addDoc,
   orderBy,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
@@ -30,6 +31,7 @@ interface CommentWithUser extends Comment {
 export class AppComponent {
   boardBgColor = 'blue';
   comment = '';
+  changed_comment = '';
   comments$: Observable<CommentWithUser[]>;
 
   constructor(private firestore: Firestore) {
@@ -70,6 +72,15 @@ export class AppComponent {
       });
 
       console.log('Document written with ID: ', docRef.id);
+    }
+  }
+
+  async editComment(comment: CommentWithUser) {
+    console.log('hoge ' + this.changed_comment);
+    if (comment) {
+      return await updateDoc(doc(this.firestore, `comments/${comment.id}`), {
+        message: this.changed_comment,
+      });
     }
   }
 }
