@@ -11,15 +11,12 @@ import {
   query,
   setDoc,
   addDoc,
+  orderBy,
 } from '@angular/fire/firestore';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
 import { Comment, commentConverter } from './class/comment';
 import { User, userConverter } from './class/user';
-
-interface Item {
-  hoge: string;
-}
 
 interface CommentWithUser extends Comment {
   user: User;
@@ -36,9 +33,10 @@ export class AppComponent {
   comments$: Observable<CommentWithUser[]>;
 
   constructor(private firestore: Firestore) {
-    const comments = collection(firestore, 'comments').withConverter(
-      commentConverter
-    );
+    const comments = query(
+      collection(firestore, 'comments'),
+      orderBy('date', 'asc')
+    ).withConverter(commentConverter);
 
     this.comments$ = collectionData(comments).pipe(
       switchMap((comments) => {
