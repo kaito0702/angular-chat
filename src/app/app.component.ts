@@ -9,6 +9,8 @@ import {
   getDoc,
   where,
   query,
+  setDoc,
+  addDoc,
 } from '@angular/fire/firestore';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
@@ -60,9 +62,16 @@ export class AppComponent {
     );
   }
 
-  addComment(comment: string): void {
+  async addComment(comment: string): Promise<void> {
     if (comment) {
-      // firestoreにメッセージをを登録
+      const docRef = await addDoc(collection(this.firestore, 'comments'), {
+        date: new Date(),
+        state: true,
+        message: comment,
+        user_id: 'user1',
+      });
+
+      console.log('Document written with ID: ', docRef.id);
     }
   }
 }

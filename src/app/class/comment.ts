@@ -32,7 +32,6 @@ export const commentConverter = {
     options: SnapshotOptions
   ): Comment {
     const data: any = snapshot.data(options)!;
-    console.log('hoge');
     return new Comment(
       snapshot.id,
       data.date.toDate(),
