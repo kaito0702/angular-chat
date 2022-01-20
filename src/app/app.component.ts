@@ -9,15 +9,14 @@ import {
   getDoc,
   where,
   query,
+  setDoc,
+  addDoc,
+  orderBy,
 } from '@angular/fire/firestore';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
 import { Comment, commentConverter } from './class/comment';
 import { User, userConverter } from './class/user';
-
-interface Item {
-  hoge: string;
-}
 
 interface CommentWithUser extends Comment {
   user: User;
@@ -34,9 +33,10 @@ export class AppComponent {
   comments$: Observable<CommentWithUser[]>;
 
   constructor(private firestore: Firestore) {
-    const comments = collection(firestore, 'comments').withConverter(
-      commentConverter
-    );
+    const comments = query(
+      collection(firestore, 'comments'),
+      orderBy('date', 'asc')
+    ).withConverter(commentConverter);
 
     this.comments$ = collectionData(comments).pipe(
       switchMap((comments) => {
@@ -60,9 +60,16 @@ export class AppComponent {
     );
   }
 
-  addComment(comment: string): void {
+  async addComment(comment: string): Promise<void> {
     if (comment) {
-      // firestoreにメッセージをを登録
+      const docRef = await addDoc(collection(this.firestore, 'comments'), {
+        date: new Date(),
+        state: true,
+        message: comment,
+        user_id: 'user1',
+      });
+
+      console.log('Document written with ID: ', docRef.id);
     }
   }
 }
