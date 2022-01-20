@@ -1,12 +1,13 @@
 .page {
     overflow: scroll;
     max-width: 960px;
-    height: 100vh;
+    height: 100%;
     margin: 0 auto;
     padding: 10px 0;
     border-left: 1px solid #DDDDDD;
     border-right: 1px solid #DDDDDD;
 }
+
 
 section {
     margin: 50px 10px 90px;
@@ -21,7 +22,7 @@ section {
     min-height: 100px;
     margin: 0;
     padding: 10px;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid #8a7575;
     background-color: #fff;
 }
 
@@ -32,10 +33,6 @@ section {
     border-radius: 4px;
     font-size: 15px;
     word-break: break-all;
-}
-
-.chat-board {
-    background-color : 95c0ec;
 }
 
 .media-body h4.media-heading {
@@ -69,15 +66,55 @@ section {
     text-align: center;
 }
 
+.edit-form {
+    width: 100%;
+}
+
+.edit-btn {
+    margin: 0 5px;
+}
+
 .media-left .icon {
     background-color: #f0974e;
 }
-
 .media-right .icon {
     background-color: #35b8c2;
 }
 
-.skyblue-bg {
-    background: #7cbde8;
+.media-body h4.media-heading .fa {
+    cursor: pointer;
 }
 
+.media-body h4.media-heading .fa:hover {
+    color: #666;
+}
+
+.media-body div.edit-buttons {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.media-body div.edit-buttons .btn {
+    width: 100px;
+}
+
+.media-body h4.media-heading .fa {
+    cursor: pointer;
+}
+    
+.media-body h4.media-heading .fa:hover {
+    color: #666;
+}
+
+.media-body div.edit-buttons {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.media-body div.edit-buttons .btn {
+    width: 100px;
+}
+
+.sky-blue {
+    background: #7cbde8;
+}

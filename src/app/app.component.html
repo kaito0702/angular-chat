@@ -1,9 +1,9 @@
-<div class="page skyblue-bg">
+<div class="page sky-blue">
   <section class="chat">
     <div class="chat-timeline">
       <div
         *ngFor="let comment of comments$ | async"
-        class="skyblue-bg list-group-item list-group-item-action flex-column align-items-start border-0"
+        class="list-group-item list-group-item-action flex-column align-items-start border-0 sky-blue"
       >
         <div class="media">
           <div *ngIf="comment.user.status === false" class="media-left">
@@ -11,12 +11,41 @@
           </div>
           <div class="media-body">
             <div class="d-flex w-100 justify-content-between">
-              <h4 class="media-heading">{{ comment.user.name }}</h4>
+              <h4 class="media-heading">
+                {{ comment.user.name }}
+                <ng-container *ngIf="comment.user.status === true">
+                  <div>
+                    <i
+                      class="fa fa-edit ml-2"
+                      title="編集"
+                      (click)="comment.isEdit = !comment.isEdit"
+                    ></i>
+                    <i class="fa fa-trash ml-2" title="削除"></i>
+                  </div>
+                </ng-container>
+              </h4>
               <small class="media-date">{{
                 comment.date | date: "dd/MM/yyyy"
               }}</small>
             </div>
-            <pre>{{ comment.message }}</pre>
+            <ng-container *ngIf="!comment.isEdit">
+              <pre>{{ comment.message }}</pre>
+            </ng-container>
+            <ng-container *ngIf="comment.isEdit">
+              <div class="input-group">
+                <textarea
+                  [(ngModel)]="comment.message"
+                  name="edit-comment"
+                  class="edit-form form-cotrol"
+                ></textarea>
+              </div>
+              <div class="edit-buttons">
+                <button class="edit-btn btn btn-success btn-sm">更新</button>
+                <button class="edit-btn btn btn-warning btn-sm">
+                  キャンセル
+                </button>
+              </div>
+            </ng-container>
           </div>
           <div *ngIf="comment.user.status === true" class="media-right">
             <a href="#" class="icon">{{ comment.user.initial }}</a>
