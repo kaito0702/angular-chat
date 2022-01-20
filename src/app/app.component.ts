@@ -1,7 +1,6 @@
 import { CommentEndToken } from '@angular/compiler/src/ml_parser/tokens';
 import { Component, OnInit } from '@angular/core';
 import { user } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   Firestore,
   collection,
@@ -13,6 +12,7 @@ import {
   setDoc,
   addDoc,
   orderBy,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { map, Observable, switchMap, tap } from 'rxjs';
 
@@ -31,12 +31,10 @@ interface CommentWithUser extends Comment {
 export class AppComponent {
   boardBgColor = 'blue';
   comment = '';
+  changed_comment = '';
   comments$: Observable<CommentWithUser[]>;
 
-  constructor(
-    private firestore: Firestore,
-    private angularFiresotore: AngularFirestore
-  ) {
+  constructor(private firestore: Firestore) {
     const comments = query(
       collection(firestore, 'comments'),
       orderBy('date', 'asc')
@@ -77,12 +75,12 @@ export class AppComponent {
     }
   }
 
-  editComment(comment: CommentWithUser) {
+  async editComment(comment: CommentWithUser) {
+    console.log('hoge ' + this.changed_comment);
     if (comment) {
-      const commentDoc = this.angularFiresotore.doc<Comment>(
-        'user/' + comment.user.id
-      );
-      commentDoc.valueChanges({ message: comment.message });
+      return await updateDoc(doc(this.firestore, `comments/${comment.id}`), {
+        message: this.changed_comment,
+      });
     }
   }
 }
