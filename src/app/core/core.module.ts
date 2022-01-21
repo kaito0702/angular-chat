@@ -7,9 +7,10 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { environment } from '../../environments/environment';
 import { HeaderComponent } from './components/header/header.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, NotFoundComponent],
   imports: [
     CommonModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

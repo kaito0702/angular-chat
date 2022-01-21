@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   selector: 'ac-root',
   template: `
     <ac-header></ac-header>
-    <ac-chat></ac-chat>
+    <div class="page sky-blue">
+      <router-outlet></router-outlet>
+    </div>
   `,
   styleUrls: ['./app.component.css'],
 })
