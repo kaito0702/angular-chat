@@ -5,27 +5,25 @@
       class="list-group-item list-group-item-action flex-column align-items-start border-0 sky-blue"
     >
       <div class="media">
-        <div *ngIf="comment.user.status === false" class="media-left">
+        <div class="media-left">
           <a href="#" class="icon">{{ comment.user.initial }}</a>
         </div>
         <div class="media-body">
           <div class="d-flex w-100 justify-content-between">
             <h4 class="media-heading">
-              {{ comment.user.name }}
-              <ng-container *ngIf="comment.user.status === true">
-                <div>
-                  <i
-                    class="fa fa-edit ml-2"
-                    title="編集"
-                    (click)="comment.isEdit = !comment.isEdit"
-                  ></i>
-                  <i
-                    class="fa fa-trash ml-2"
-                    title="削除"
-                    (click)="deleteComment(comment)"
-                  ></i>
-                </div>
-              </ng-container>
+              {{ comment.user.initial }}
+              <div>
+                <i
+                  class="fa fa-edit ml-2"
+                  title="編集"
+                  (click)="comment.isEdit = !comment.isEdit"
+                ></i>
+                <i
+                  class="fa fa-trash ml-2"
+                  title="削除"
+                  (click)="deleteComment(comment)"
+                ></i>
+              </div>
             </h4>
             <small class="media-date">{{
               comment.date | date: "dd/MM/yyyy"
@@ -55,7 +53,7 @@
             </div>
           </ng-container>
         </div>
-        <div *ngIf="comment.user.status === true" class="media-right">
+        <div class="media-right">
           <a href="#" class="icon">{{ comment.user.initial }}</a>
         </div>
       </div>

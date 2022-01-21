@@ -1,3 +1,5 @@
+import { FirebaseApp } from '@angular/fire/app';
+import { UserInfo } from '@angular/fire/auth';
 import {
   DocumentData,
   QueryDocumentSnapshot,
@@ -5,28 +7,33 @@ import {
 } from '@angular/fire/firestore';
 
 export class User {
-  id: string;
-  name: string;
+  displayName: string;
+  email: string;
+  uid: string;
   initial: string;
-  status: boolean;
 
-  constructor(id: string, name: string, initial: string, status: boolean) {
-    this.id = id;
-    this.name = name;
-    this.initial = initial;
-    this.status = status;
+  constructor(user: UserInfo) {
+    this.displayName = user.displayName!;
+    this.email = user.email!;
+    this.uid = user.uid!;
+    this.initial = user.displayName?.slice(0, 1)!;
   }
 }
 
 export const userConverter = {
   toFirestore(user: User): DocumentData {
-    return { name: user.name, initial: user.initial, status: user.status };
+    return {
+      name: user.displayName,
+      email: user.email,
+      uid: user.uid,
+      initial: user.initial,
+    };
   },
   fromFirestore(
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
   ): User {
     const data: any = snapshot.data(options)!;
-    return new User(snapshot.id, data.name, data.initial, data.status);
+    return new User(data);
   },
 };

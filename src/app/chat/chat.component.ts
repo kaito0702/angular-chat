@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import {
   Firestore,
   collection,
@@ -29,8 +30,16 @@ export class ChatComponent implements OnInit {
   comment = '';
   changed_comment = '';
   comments$: Observable<CommentWithUser[]>;
+  currentUser?: User;
 
-  constructor(private firestore: Firestore) {
+  constructor(private firestore: Firestore, private auth: Auth) {
+    const user = this.auth.currentUser;
+    const isLoggedin = !!user;
+
+    if (isLoggedin) {
+      this.currentUser = new User(user);
+    }
+
     const comments = query(
       collection(firestore, 'comments'),
       orderBy('date', 'asc')
@@ -45,8 +54,10 @@ export class ChatComponent implements OnInit {
           map((users) => {
             return comments.map((comment) => {
               const user = users.filter(
-                (user) => comment.user_id === user.id
-              )[0]; // `comment.user_id`を使って、whereでdocumentを取得できるよう改良してみて！
+                (user) => comment.user_id === user.uid
+              )[0];
+              // `comment.user_id`を使って、whereでdocumentを取得できるよう改良してみて！
+              console.log(user);
               return {
                 ...comment,
                 user,
@@ -62,19 +73,15 @@ export class ChatComponent implements OnInit {
 
   async addComment(comment: string): Promise<void> {
     if (comment) {
-      const docRef = await addDoc(collection(this.firestore, 'comments'), {
+      await addDoc(collection(this.firestore, 'comments'), {
         date: new Date(),
-        state: true,
         message: comment,
-        user_id: 'user1',
+        user_id: this.auth.currentUser?.uid,
       });
-
-      console.log('Document written with ID: ', docRef.id);
     }
   }
 
   async editComment(comment: CommentWithUser) {
-    console.log('hoge ' + this.changed_comment);
     if (comment) {
       return await updateDoc(doc(this.firestore, `comments/${comment.id}`), {
         message: this.changed_comment,

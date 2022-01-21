@@ -8,13 +8,11 @@ import {
   FacebookAuthProvider,
   TwitterAuthProvider,
   signInWithPopup,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
 } from '@angular/fire/auth';
 import { EMPTY, map, Observable, Subscription } from 'rxjs';
 import { traceUntilFirst } from '@angular/fire/performance';
-import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'ac-sign-up',
@@ -28,7 +26,7 @@ export class SignUpComponent implements OnInit {
   showLoginButton = false;
   showLogoutButton = false;
 
-  constructor(private router: Router, private auth: Auth) {
+  constructor(private auth: Auth, private userService: UserService) {
     if (auth) {
       this.user = authState(this.auth);
       this.userDisposable = authState(this.auth)
@@ -47,15 +45,7 @@ export class SignUpComponent implements OnInit {
 
   signup(form: NgForm): void {
     const { email, password } = form.value;
-
-    createUserWithEmailAndPassword(this.auth, email, password)
-      .then((credential) => {
-        const actionCodeSettings = {
-          url: `http://localhost:4200/?newAccount=true&email=${credential.user.email}`,
-        };
-        sendEmailVerification(credential.user, actionCodeSettings);
-      })
-      .then(() => this.router.navigateByUrl('/'));
+    this.userService.create(email, password);
   }
 
   ngOnDestroy(): void {
