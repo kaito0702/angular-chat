@@ -10,13 +10,13 @@ export class User {
   displayName: string;
   email: string;
   uid: string;
-  initial: string;
+  initial?: string;
 
-  constructor(user: UserInfo) {
-    this.displayName = user.displayName!;
-    this.email = user.email!;
-    this.uid = user.uid!;
-    this.initial = user.displayName?.slice(0, 1)!;
+  constructor(displayName: string, email: string, uid: string) {
+    this.displayName = displayName!;
+    this.email = email!;
+    this.uid = uid!;
+    this.initial = displayName?.slice(0, 1)!;
   }
 }
 
@@ -34,6 +34,6 @@ export const userConverter = {
     options: SnapshotOptions
   ): User {
     const data: any = snapshot.data(options)!;
-    return new User(data);
+    return new User(data.displayName, data.email, data.uid);
   },
 };

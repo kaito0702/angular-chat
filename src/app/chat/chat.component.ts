@@ -33,12 +33,11 @@ export class ChatComponent implements OnInit {
   currentUser?: User;
 
   constructor(private firestore: Firestore, private auth: Auth) {
-    const user = this.auth.currentUser;
-    const isLoggedin = !!user;
-
-    if (isLoggedin) {
-      this.currentUser = new User(user);
-    }
+    this.currentUser = new User(
+      this.auth.currentUser?.displayName!,
+      this.auth.currentUser?.email!,
+      this.auth.currentUser?.uid!
+    );
 
     const comments = query(
       collection(firestore, 'comments'),
@@ -56,12 +55,12 @@ export class ChatComponent implements OnInit {
               const user = users.filter(
                 (user) => comment.user_id === user.uid
               )[0];
-              // `comment.user_id`を使って、whereでdocumentを取得できるよう改良してみて！
-              console.log(user);
+
               return {
                 ...comment,
                 user,
               };
+              // `comment.user_id`を使って、whereでdocumentを取得できるよう改良してみて！
             });
           })
         );
