@@ -56,8 +56,8 @@
             </div>
           </ng-container>
         </div>
-        <div *ngIf="currentUser" class="media-right">
-          <a href="#" class="icon">{{ currentUser.initial }}</a>
+        <div *ngIf="currentUser?.uid === comment.user.uid" class="media-right">
+          <a href="#" class="icon">{{ comment.user.initial }}</a>
         </div>
       </div>
     </div>
