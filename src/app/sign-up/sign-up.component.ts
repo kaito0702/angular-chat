@@ -66,8 +66,4 @@ export class SignUpComponent implements OnInit {
   async login() {
     return await signInWithPopup(this.auth, new GoogleAuthProvider());
   }
-
-  async logout() {
-    return await signOut(this.auth);
-  }
 }

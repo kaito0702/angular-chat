@@ -28,38 +28,24 @@
     <a routerLink="/login" class="signup-link">ログインはこちら</a>
   </div>
 
-  <code>{{ (user | async)?.uid }}</code>
   <div>
-    <button
-      class="btn btn-danger"
-      (click)="login_with_google()"
-      *ngIf="showLoginButton"
-    >
+    <button class="btn btn-danger" (click)="login_with_google()">
       <i class="icon fab fa-google"></i>Log in with Google
     </button>
   </div>
   <div>
-    <button
-      class="btn btn-primary"
-      (click)="login_with_facebook()"
-      *ngIf="showLoginButton"
-    >
+    <button class="btn btn-primary" (click)="login_with_facebook()">
       <i class="icon fab fa-facebook"></i>Log in with Facebook
     </button>
   </div>
   <div>
-    <button class="btn btn-success" (click)="login()" *ngIf="showLoginButton">
+    <button class="btn btn-success" (click)="login()">
       <i class="icon fab fa-line"></i>Log in with LINE
     </button>
   </div>
   <div>
-    <button
-      class="btn btn-warning"
-      (click)="login_with_twitter()"
-      *ngIf="showLoginButton"
-    >
+    <button class="btn btn-warning" (click)="login_with_twitter()">
       <i class="icon fab fa-twitter"></i>Log in with Twitter
     </button>
   </div>
-  <button (click)="logout()" *ngIf="showLogoutButton">Log out</button>
 </div>

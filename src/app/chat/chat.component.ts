@@ -39,6 +39,8 @@ export class ChatComponent implements OnInit {
       this.auth.currentUser?.uid!
     );
 
+    console.log(this.currentUser);
+
     const comments = query(
       collection(firestore, 'comments'),
       orderBy('date', 'asc')
@@ -55,7 +57,6 @@ export class ChatComponent implements OnInit {
               const user = users.filter(
                 (user) => comment.user_id === user.uid
               )[0];
-
               return {
                 ...comment,
                 user,

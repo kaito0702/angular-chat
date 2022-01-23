@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private auth: Auth, private router: Router) {}
+  currentUser: User | null;
+
+  constructor(private auth: Auth, private router: Router) {
+    this.currentUser = this.auth.currentUser;
+  }
 
   ngOnInit(): void {}
 
