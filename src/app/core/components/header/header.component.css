@@ -1,3 +1,23 @@
 .navbar {
     border-bottom: 1px solid #ddd;
 }
+
+nav {
+    background-color: #955020;
+    font-weight: bold;
+    color: white;
+}
+
+.brand-name {
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+}
+
+.brand-name:hover {
+    color: #C1C0C0;
+}
+
+.nav-button:hover {
+    font-size: larger;
+}

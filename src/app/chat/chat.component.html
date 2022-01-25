@@ -22,7 +22,7 @@
       <div class="chat-timeline">
         <div
           *ngFor="let comment of comments$ | async"
-          class="list-group-item list-group-item-action flex-column align-items-start border-0 sky-blue"
+          class="message-item list-group-item list-group-item-action flex-column align-items-start border-0"
         >
           <div class="media">
             <div
@@ -88,7 +88,7 @@
     </section>
     <section class="chat-editor">
       <form class="chat-form">
-        <div class="form-header d-flex flex-row-reverse mb-2">
+        <div class="form-item form-header d-flex flex-row-reverse mb-2">
           <span class="input-group-btn">
             <button
               (click)="addComment(comment); comment = ''"
