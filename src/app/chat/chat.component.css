@@ -20,10 +20,11 @@
 }
 
 .content {
+  overflow: scroll;
   margin-top: 50px;
   flex: 1 0 auto;
   position: relative;
-  max-width: calc(100% - 250px);
+  width: 50%;
   height: 100%;
   background-color: #F8C471;
 }
