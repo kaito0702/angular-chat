@@ -13,11 +13,10 @@ export class UserListComponent implements OnInit {
   users$: Observable<User[]>;
 
   constructor(private firestore: Firestore) {
-    const users = collection(firestore, 'users').withConverter(userConverter);
-
     this.users$ = collectionData(
       collection(firestore, 'users').withConverter(userConverter)
     );
   }
+
   ngOnInit(): void {}
 }

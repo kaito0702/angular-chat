@@ -20,38 +20,13 @@ import { UserService } from '../core/services/user.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  private readonly userDisposable: Subscription | undefined;
-  public readonly user: Observable<User | null> = EMPTY;
-
-  showLoginButton = false;
-  showLogoutButton = false;
-
-  constructor(private auth: Auth, private userService: UserService) {
-    if (auth) {
-      this.user = authState(this.auth);
-      this.userDisposable = authState(this.auth)
-        .pipe(
-          traceUntilFirst('auth'),
-          map((u) => !!u)
-        )
-        .subscribe((isLoggedIn) => {
-          this.showLoginButton = !isLoggedIn;
-          this.showLogoutButton = isLoggedIn;
-        });
-    }
-  }
+  constructor(private auth: Auth, private userService: UserService) {}
 
   ngOnInit(): void {}
 
   signup(form: NgForm): void {
     const { email, password } = form.value;
     this.userService.create(email, password);
-  }
-
-  ngOnDestroy(): void {
-    if (this.userDisposable) {
-      this.userDisposable.unsubscribe();
-    }
   }
 
   async login_with_google() {

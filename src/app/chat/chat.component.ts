@@ -39,8 +39,6 @@ export class ChatComponent implements OnInit {
       this.auth.currentUser?.uid!
     );
 
-    console.log(this.currentUser);
-
     const comments = query(
       collection(firestore, 'comments'),
       orderBy('date', 'asc')
