@@ -26,7 +26,7 @@
         >
           <div class="media">
             <div
-              *ngIf="currentUser?.uid === comment.user.uid"
+              *ngIf="!(currentUser?.uid === comment.user.uid)"
               class="media-left"
             >
               <a href="#" class="icon">{{ comment.user.initial }}</a>
@@ -35,7 +35,7 @@
               <div class="d-flex w-100 justify-content-between">
                 <h4 class="media-heading">
                   {{ comment.user.displayName }}
-                  <div>
+                  <div *ngIf="currentUser?.uid === comment.user.uid">
                     <i
                       class="fa fa-edit ml-2"
                       title="編集"
