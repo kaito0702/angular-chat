@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ac-root',
   template: `
     <ac-header></ac-header>
-    <div class="page sky-blue">
+    <div class="page">
       <router-outlet></router-outlet>
     </div>
   `,
