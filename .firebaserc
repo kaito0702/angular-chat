@@ -1,4 +1,8 @@
 {
+  "projects": {
+    "default": "angular-chat-e4959",
+    "angular-chat": "angular-chat-e4959"
+  },
   "targets": {
     "angular-chat-e4959": {
       "hosting": {
@@ -7,8 +11,5 @@
         ]
       }
     }
-  },
-  "projects": {
-    "default": "angular-chat-e4959"
   }
 }
