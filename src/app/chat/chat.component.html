@@ -26,7 +26,7 @@
         >
           <div class="media">
             <div
-              *ngIf="!(currentUser?.uid === comment.user.uid)"
+              *ngIf="currentUser?.uid === comment.user.uid"
               class="media-left"
             >
               <a href="#" class="icon">{{ comment.user.initial }}</a>
