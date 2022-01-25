@@ -1,0 +1,32 @@
+.user-list {
+    margin-top: 70px;
+    position: relative;
+    top: 10px;
+    width: 250px;
+    height: 100%;
+    overflow: auto;
+    border-right: 1px solid #ddd;
+    background-color: white;
+}
+
+.users {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.users li {
+border-bottom: 1px solid #ddd;
+}
+
+.users li a {
+display: block;
+height: 50px;
+padding: 10px;
+}
+
+.image {
+display: inline-block;
+position: relative;
+margin-right: 5px;
+}

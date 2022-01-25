@@ -1,0 +1,43 @@
+.container  {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.container  {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.heading {
+  margin: 30px 0;
+}
+
+.form-group {
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button[type="submit"] {
+  cursor: pointer;
+}
+
+.note {
+  text-align: center;
+  margin: 20px 0;
+}
+  
+button[type="submit"] {
+  cursor: pointer;
+}
+
+button {
+  margin: 10px;
+  width: 40%;
+}
+
+.icon {
+  margin-right: 10px;
+}

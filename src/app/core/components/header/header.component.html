@@ -1,6 +1,35 @@
-<nav
-  class="navbar justify-content-between fixed-top navbar-inverse bg-light text-dark"
->
-  <a href="#" class="navbar-brand text-dark">Angular Chat</a>
-  <a href="#" class="navbar-text text-dark">Login</a>
+<nav class="navbar justify-content-between fixed-top navbar-inverse">
+  <a routerLink="/" routerLinkActive="router-link-active" class="brand-name"
+    >Angular Chat</a
+  >
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              routerLink="/signup"
+              class="nav-button nav-link text-white"
+              aria-current="page"
+              >SignUp</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/login" class="nav-button nav-link text-white"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/"
+              class="nav-button nav-link text-white"
+              (click)="logout()"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </nav>

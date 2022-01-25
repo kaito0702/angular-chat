@@ -8,11 +8,13 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../../environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent, NotFoundComponent],
   imports: [
     CommonModule,
+    RouterModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
